@@ -1,3 +1,4 @@
+
 🦸‍♂️ Marvel Explorer 🔍  
 Marvel Explorer es una aplicación web que permite a los fans del universo Marvel explorar personajes, cómics y eventos, consultar información oficial de la API de Marvel, y gestionar su propia colección personalizada de héroes favoritos.
 
@@ -49,19 +50,25 @@ Prerrequisitos:
 - Docker  
 - Java 17 y Maven  
 
+```bash
 # Clona el proyecto
 git clone https://github.com/tu-usuario/marvel-explorer.git
 cd marvel-explorer
 
 # Levanta los contenedores
 docker-compose up --build
+```
+
 Luego accede a:
 
-🔗 Frontend: http://localhost:4200
+- 🔗 Frontend: http://localhost:4200  
+- 🔗 Backend: http://localhost:8080/api/characters
 
-🔗 Backend: http://localhost:8080/api/characters
+---
 
 📂 Estructura del proyecto
+
+```
 marvel-explorer/
 │
 ├── backend/                 # Spring Boot
@@ -73,13 +80,18 @@ marvel-explorer/
 │   └── Dockerfile
 │
 └── docker-compose.yml
+```
+
+---
 
 🧑‍🔧 Autor del proyecto
 
 Este proyecto está siendo desarrollado por:
 
-🎓 Víctor García Duarte (vgd937)
+🎓 **Víctor García Duarte** (vgd937)
+
+---
 
 🛡️ Licencia
 
-Este proyecto es de uso académico para la asignatura Desarrollo Rápido de Aplicaciones y no está afiliado oficialmente con Marvel Entertainment.
+Este proyecto es de uso académico para la asignatura *Desarrollo Rápido de Aplicaciones* y no está afiliado oficialmente con Marvel Entertainment.
