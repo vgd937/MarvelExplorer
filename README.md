@@ -48,3 +48,41 @@ Prerrequisitos:
 - Node.js y Angular CLI  
 - Docker  
 - Java 17 y Maven  
+```bash
+# Clona el proyecto
+git clone https://github.com/tu-usuario/marvel-explorer.git
+cd marvel-explorer
+
+# Levanta los contenedores
+docker-compose up --build
+Luego accede a:
+
+🔗 Frontend: http://localhost:4200
+
+🔗 Backend: http://localhost:8080/api/characters
+
+📂 Estructura del proyecto
+
+bash
+Copiar
+Editar
+marvel-explorer/
+│
+├── backend/                 # Spring Boot
+│   ├── src/...
+│   └── Dockerfile
+│
+├── frontend/                # Angular
+│   ├── src/...
+│   └── Dockerfile
+│
+└── docker-compose.yml
+🧑‍🔧 Autor del proyecto
+
+Este proyecto está siendo desarrollado por:
+
+🎓 Víctor García Duarte (vgd937)
+
+🛡️ Licencia
+
+Este proyecto es de uso académico para la asignatura Desarrollo Rápido de Aplicaciones y no está afiliado oficialmente con Marvel Entertainment.
