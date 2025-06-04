@@ -1,0 +1,14 @@
+<!-- src/app/character-detail/character-detail.component.html -->
+
+<div *ngIf="loading">Cargando detalles…</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<ng-container *ngIf="character">
+  <h2>{{ character.name }}</h2>
+  <img
+    [src]="character.thumbnail.path + '/portrait_uncanny.' + character.thumbnail.extension"
+    [alt]="character.name"
+  />
+  <p>{{ character.description || 'Sin descripción disponible.' }}</p>
+  <button (click)="addToFavorites()">⭐ Añadir a favoritos</button>
+</ng-container>
