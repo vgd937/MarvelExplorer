@@ -1,0 +1,6 @@
+<div *ngFor="let fav of favorites">
+  <h3>{{ fav.characterId }}</h3>
+  <textarea [(ngModel)]="fav.notes"></textarea>
+  <button (click)="saveNotes(fav.characterId, fav.notes)">Guardar notas</button>
+  <button (click)="remove(fav.characterId)">Eliminar</button>
+</div>

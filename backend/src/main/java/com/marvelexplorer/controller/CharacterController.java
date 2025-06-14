@@ -18,13 +18,38 @@ public class CharacterController {
         return "¡Backend activo!";
     }
 
-    @GetMapping
-    public String getCharacters(@RequestParam String name) {
-        System.out.println("Recibida petición para: " + name);
-        return marvelApiService.getCharacters(name);
+    @GetMapping(produces = "application/json")
+    public String searchCharacters(
+        @RequestParam(required = false) String name,
+        @RequestParam(required = false, name = "nameStartsWith") String nameStartsWith
+    ) {
+        String query = nameStartsWith != null ? nameStartsWith : name;
+        System.out.println("Petición recibida a /api/characters con query=" + query);
+        if (query == null || query.isBlank()) {
+            return """
+            {
+              "data": {
+                "results": []
+              }
+            }
+            """;
+        }
+        // Llama al servicio real de Marvel
+        return marvelApiService.getCharacters(query);
     }
+
     @GetMapping("/{id}")
-public String getCharacterById(@PathVariable long id) {
-    return marvelApiService.getCharacterById(id);
-}
+    public String getCharacterById(@PathVariable long id) {
+        return marvelApiService.getCharacterById(id);
+    }
+
+    @GetMapping("/{id}/comics")
+    public String getComics(@PathVariable long id) {
+        return marvelApiService.getComicsByCharacterId(id);
+    }
+
+    @GetMapping("/{id}/events")
+    public String getEvents(@PathVariable long id) {
+        return marvelApiService.getEventsByCharacterId(id);
+    }
 }

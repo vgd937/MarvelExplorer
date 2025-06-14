@@ -11,4 +11,18 @@
   />
   <p>{{ character.description || 'Sin descripción disponible.' }}</p>
   <button (click)="addToFavorites()">⭐ Añadir a favoritos</button>
+
+  <section *ngIf="comics.length">
+    <h3>Cómics</h3>
+    <ul>
+      <li *ngFor="let comic of comics">{{ comic.title }}</li>
+    </ul>
+  </section>
+
+  <section *ngIf="events.length">
+    <h3>Eventos</h3>
+    <ul>
+      <li *ngFor="let event of events">{{ event.title }}</li>
+    </ul>
+  </section>
 </ng-container>

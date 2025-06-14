@@ -7,6 +7,7 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -34,6 +35,17 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
+  }),
+);
+
+/**
+ * Proxy /api to backend
+ */
+app.use(
+  '/api',
+  createProxyMiddleware({
+    target: 'http://backend:8080',
+    changeOrigin: true,
   }),
 );
 

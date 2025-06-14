@@ -21,7 +21,7 @@ public class MarvelApiService {
         String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
 
         String url = String.format(
-            "%s/characters?name=%s&ts=%d&apikey=%s&hash=%s",
+            "%s/characters?nameStartsWith=%s&ts=%d&apikey=%s&hash=%s",
             baseUrl, name, ts, publicKey, hash
         );
 
@@ -29,16 +29,55 @@ public class MarvelApiService {
         return restTemplate.getForObject(url, String.class);
     }
     
-public String getCharacterById(long id) {
-    long ts = System.currentTimeMillis();
-    String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
+    public String getCharacterById(long id) {
+        long ts = System.currentTimeMillis();
+        String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
 
-    String url = String.format(
-        "%s/characters/%d?ts=%d&apikey=%s&hash=%s",
-        baseUrl, id, ts, publicKey, hash
-    );
+        String url = String.format(
+            "%s/characters/%d?ts=%d&apikey=%s&hash=%s",
+            baseUrl, id, ts, publicKey, hash
+        );
 
-    RestTemplate restTemplate = new RestTemplate();
-    return restTemplate.getForObject(url, String.class);
-}
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
+    }
+
+    public String getComicsByCharacterId(long id) {
+        long ts = System.currentTimeMillis();
+        String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
+
+        String url = String.format(
+            "%s/characters/%d/comics?ts=%d&apikey=%s&hash=%s",
+            baseUrl, id, ts, publicKey, hash
+        );
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
+    }
+
+    public String getEventsByCharacterId(long id) {
+        long ts = System.currentTimeMillis();
+        String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
+
+        String url = String.format(
+            "%s/characters/%d/events?ts=%d&apikey=%s&hash=%s",
+            baseUrl, id, ts, publicKey, hash
+        );
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
+    }
+
+    public String searchCharactersByName(String name) {
+        long ts = System.currentTimeMillis();
+        String hash = DigestUtils.md5Hex(ts + privateKey + publicKey);
+
+        String url = String.format(
+            "%s/characters?nameStartsWith=%s&ts=%d&apikey=%s&hash=%s",
+            baseUrl, name, ts, publicKey, hash
+        );
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
+    }
 }

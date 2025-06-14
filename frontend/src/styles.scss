@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(120deg, #fff 0%, #fbb03422 100%);
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr !important;
+  }
+}

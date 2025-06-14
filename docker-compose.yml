@@ -3,19 +3,13 @@ version: "3.8"
 services:
   backend:
     build: ./backend
+    container_name: marvel-backend
     ports:
       - "8080:8080"
-    networks:
-      - marvel-net
-
   frontend:
     build: ./frontend
+    container_name: marvel-frontend
     ports:
-      - "4200:80"
+      - "4200:80"   # Cambia 4000:4000 por 4200:80
     depends_on:
       - backend
-    networks:
-      - marvel-net
-
-networks:
-  marvel-net:
