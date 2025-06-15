@@ -30,32 +30,30 @@ export class CharacterDetailComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  ngOnInit() {
-    console.log('Detalle cargado', this.route.snapshot.paramMap.get('id'));
-
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.characterService.getCharacterById(id).subscribe({
-      next: (resp: MarvelApiResponse) => {
-        this.character = resp.data.results[0];
-        this.loading = false;
-      },
-      error: (err: any) => {
-        console.error(err);
-        this.error = 'No se pudo cargar el personaje';
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      if (id) {
+        this.loading = true;
+        this.error = '';
+        this.characterService.getCharacterById(id).subscribe({
+          next: (resp) => {
+            this.character = resp.data?.results?.[0] ?? null;
+            // Aquí accedes directamente a los cómics y eventos
+            this.comics = this.character?.comics?.items ?? [];
+            this.events = this.character?.events?.items ?? [];
+            this.loading = false;
+          },
+          error: () => {
+            this.error = 'No se pudo cargar el personaje';
+            this.loading = false;
+          }
+        });
+      } else {
+        this.error = 'ID de personaje no válido';
         this.loading = false;
       }
     });
-
-    this.comicService.getComics(id).subscribe({
-      next: (comics: any[]) => this.comics = comics,
-      error: () => this.comics = []
-    });
-    this.comicService.getEvents(id).subscribe({
-      next: (events: any[]) => this.events = events,
-      error: () => this.events = []
-    });
-
-    this.cargarBio();
   }
 
   cargarBio() {

@@ -12,4 +12,16 @@ export interface MarvelCharacter {
     path: string;
     extension: string;
   };
+  comics?: {
+    available: number;
+    collectionURI: string;
+    items: { resourceURI: string; name: string }[];
+    returned: number;
+  };
+  events?: {
+    available: number;
+    collectionURI: string;
+    items: { resourceURI: string; name: string }[];
+    returned: number;
+  };
 }

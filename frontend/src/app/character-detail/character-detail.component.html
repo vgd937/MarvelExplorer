@@ -14,14 +14,14 @@
   <!-- Sección de cómics -->
   <h3>Cómics</h3>
   <ul>
-    <li *ngFor="let comic of comics">{{ comic.title }}</li>
+    <li *ngFor="let comic of comics">{{ comic.name }}</li>
   </ul>
   <div *ngIf="!comics.length">No hay cómics disponibles.</div>
 
   <!-- Sección de eventos -->
   <h3>Eventos</h3>
   <ul>
-    <li *ngFor="let event of events">{{ event.title }}</li>
+    <li *ngFor="let event of events">{{ event.name }}</li>
   </ul>
   <div *ngIf="!events.length">No hay eventos disponibles.</div>
 
