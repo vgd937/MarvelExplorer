@@ -39,10 +39,11 @@ export class CharacterDetailComponent implements OnInit {
         this.characterService.getCharacterById(id).subscribe({
           next: (resp) => {
             this.character = resp.data?.results?.[0] ?? null;
-            // Aquí accedes directamente a los cómics y eventos
             this.comics = this.character?.comics?.items ?? [];
             this.events = this.character?.events?.items ?? [];
             this.loading = false;
+            // Llama aquí a la función para cargar la biografía
+            this.cargarBio();
           },
           error: () => {
             this.error = 'No se pudo cargar el personaje';
@@ -57,7 +58,7 @@ export class CharacterDetailComponent implements OnInit {
   }
 
   cargarBio() {
-    const nombre = this.character?.name?.replace(' ', '_');
+    const nombre = this.character?.name?.replace(/ /g, '_');
     if (nombre) {
       this.http.get(`/api/scraping/bio?character=${encodeURIComponent(nombre)}`, { responseType: 'text' })
         .subscribe({

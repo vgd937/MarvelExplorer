@@ -25,7 +25,7 @@
   </ul>
   <div *ngIf="!events.length">No hay eventos disponibles.</div>
 
-  <div *ngIf="bio">
+  <div *ngIf="bio && bio.trim().length > 0">
     <h3>Biografía (Wikipedia)</h3>
     <p>{{ bio }}</p>
   </div>
