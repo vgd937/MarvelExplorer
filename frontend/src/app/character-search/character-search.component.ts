@@ -17,7 +17,7 @@ export class CharacterSearchComponent implements OnInit {
   error: string = '';
 
   featuredCharacters: any[] = [];
-  featuredNames: string[] = ['Spider', 'Iron Man', 'Hulk', 'Thor', 'Captain America'];
+  featuredNames: string[] = ['Spider-Man (Ultimate)', 'Iron Man', 'Hulk', 'Thor', 'Captain America'];
 
   constructor(
     private characterService: CharacterService,
@@ -56,6 +56,6 @@ export class CharacterSearchComponent implements OnInit {
   }
 
   verDetalle(id: number): void {
-    this.router.navigate(['/characters', id]);
+    this.router.navigate(['/character', id]);
   }
 }
