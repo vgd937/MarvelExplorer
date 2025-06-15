@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Favorite, FavoriteService } from '../services/favorites.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class FavoritesComponent implements OnInit {
   newId: number | null = null;
   newNote = '';
 
-  constructor(private favService: FavoriteService) {}
+  constructor(private favService: FavoriteService, private router: Router) {}
 
   ngOnInit() {
     this.load();
@@ -27,23 +28,15 @@ export class FavoritesComponent implements OnInit {
     this.favService.getAll().subscribe(favs => this.favorites = favs);
   }
 
-  add() {
-    if (this.newId && this.newName) {
-      this.favService.add({ characterId: this.newId, characterName: this.newName, note: this.newNote })
-        .subscribe(() => {
-          this.load();
-          this.newId = null;
-          this.newName = '';
-          this.newNote = '';
-        });
-    }
-  }
-
   save(fav: Favorite) {
     this.favService.update(fav).subscribe(() => this.load());
   }
 
   remove(characterId: number) {
     this.favService.delete(characterId).subscribe(() => this.load());
+  }
+
+  goToDetail(id: number) {
+    this.router.navigate(['/character', id]);
   }
 }

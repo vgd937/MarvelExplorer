@@ -73,7 +73,8 @@ export class CharacterDetailComponent implements OnInit {
       this.favoritesService.add({
         characterId: this.character.id,
         characterName: this.character.name,
-        note: ''
+        note: '',
+        thumbnailUrl: this.character.thumbnail.path + '/portrait_uncanny.' + this.character.thumbnail.extension
       }).subscribe(() => {
         alert(`${this.character?.name} añadido a favoritos!`);
       });

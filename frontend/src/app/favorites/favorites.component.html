@@ -1,13 +1,15 @@
 <h2>Favoritos</h2>
-<ul>
-  <li *ngFor="let fav of favorites">
-    <b>{{ fav.characterName }}</b>
-    <input [(ngModel)]="fav.note" placeholder="Nota personalizada">
-    <button (click)="save(fav)">Guardar</button>
-    <button (click)="remove(fav.characterId)">Eliminar</button>
+<ul class="favorites-list">
+  <li *ngFor="let fav of favorites" class="favorite-item">
+    <img
+      [src]="fav.thumbnailUrl"
+      [alt]="fav.characterName"
+      class="favorite-img"
+    />
+    <span class="favorite-name">{{ fav.characterName }}</span>
+    <input [(ngModel)]="fav.note" placeholder="Nota personalizada" class="favorite-note">
+    <button (click)="save(fav)" class="favorite-btn">Guardar</button>
+    <button (click)="remove(fav.characterId)" class="favorite-btn remove">Eliminar</button>
+    <button (click)="goToDetail(fav.characterId)" class="favorite-btn details">Ver detalles</button>
   </li>
 </ul>
-<input [(ngModel)]="newName" placeholder="Nombre personaje">
-<input [(ngModel)]="newId" placeholder="ID personaje" type="number">
-<input [(ngModel)]="newNote" placeholder="Nota">
-<button (click)="add()">Añadir</button>

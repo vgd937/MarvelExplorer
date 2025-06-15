@@ -6,6 +6,7 @@ export interface Favorite {
   characterId: number;
   characterName: string;
   note: string;
+  thumbnailUrl: string; // Añade esta propiedad
 }
 
 @Injectable({ providedIn: 'root' })
