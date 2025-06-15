@@ -9,20 +9,24 @@
     [src]="character.thumbnail.path + '/portrait_uncanny.' + character.thumbnail.extension"
     [alt]="character.name"
   />
-  <p>{{ character.description || 'Sin descripción disponible.' }}</p>
-  <button (click)="addToFavorites()">⭐ Añadir a favoritos</button>
+  <p>{{ character.description || 'Sin descripción.' }}</p>
 
-  <section *ngIf="comics.length">
-    <h3>Cómics</h3>
-    <ul>
-      <li *ngFor="let comic of comics">{{ comic.title }}</li>
-    </ul>
-  </section>
+  <!-- Sección de cómics -->
+  <h3>Cómics</h3>
+  <ul>
+    <li *ngFor="let comic of comics">{{ comic.title }}</li>
+  </ul>
+  <div *ngIf="!comics.length">No hay cómics disponibles.</div>
 
-  <section *ngIf="events.length">
-    <h3>Eventos</h3>
-    <ul>
-      <li *ngFor="let event of events">{{ event.title }}</li>
-    </ul>
-  </section>
+  <!-- Sección de eventos -->
+  <h3>Eventos</h3>
+  <ul>
+    <li *ngFor="let event of events">{{ event.title }}</li>
+  </ul>
+  <div *ngIf="!events.length">No hay eventos disponibles.</div>
+
+  <div *ngIf="bio">
+    <h3>Biografía (Wikipedia)</h3>
+    <p>{{ bio }}</p>
+  </div>
 </ng-container>

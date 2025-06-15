@@ -3,14 +3,18 @@
   <button type="submit">Buscar</button>
 </form>
 
-<!-- Héroes destacados -->
-<div *ngIf="featuredCharacters.length" class="cards">
-  <div class="card" *ngFor="let character of featuredCharacters">
-    <img [src]="character.thumbnail.path + '/portrait_uncanny.' + character.thumbnail.extension"
-         [alt]="character.name" />
-    <h3>{{ character.name }}</h3>
-    <!-- Descripción eliminada -->
-    <button (click)="verDetalle(character.id)">Ver detalles</button>
+<!-- Héroes destacados SOLO si no hay búsqueda -->
+<div *ngIf="!query && featuredCharacters.length">
+  <h2>Héroes destacados</h2>
+  <div class="cards">
+    <div class="card" *ngFor="let character of featuredCharacters">
+      <img [src]="character.thumbnail.path + '/portrait_uncanny.' + character.thumbnail.extension"
+           [alt]="character.name" />
+      <h3>{{ character.name }}</h3>
+      <button (click)="verDetalle(character.id)" type="button">
+        Ver detalles
+      </button>
+    </div>
   </div>
 </div>
 
@@ -22,8 +26,9 @@
     <img [src]="character.thumbnail.path + '/portrait_uncanny.' + character.thumbnail.extension"
          [alt]="character.name" />
     <h3>{{ character.name }}</h3>
-    <!-- Descripción eliminada -->
-    <button (click)="verDetalle(character.id)">Ver detalles</button>
+    <button (click)="verDetalle(character.id)" type="button">
+      Ver detalles
+    </button>
   </div>
 </div>
 <div *ngIf="!characters.length && !error && query">No se encontraron personajes.</div>

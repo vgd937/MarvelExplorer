@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CharacterSearchComponent } from './character-search/character-search.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CharacterSearchComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

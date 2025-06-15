@@ -55,7 +55,7 @@ export class CharacterSearchComponent implements OnInit {
     });
   }
 
-  verDetalle(id: number): void {
-    this.router.navigate(['/character', id]);
+  verDetalle(id: any): void {
+    this.router.navigate(['/character', Number(id)]);
   }
 }

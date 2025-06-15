@@ -5,6 +5,7 @@ import { CharacterService } from '../services/character.service';
 import { FavoritesService } from '../services/favorites.service';
 import { ComicService } from '../services/comic.service';
 import { MarvelApiResponse, MarvelCharacter } from '../models/character';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-character-detail',
@@ -19,15 +20,19 @@ export class CharacterDetailComponent implements OnInit {
   error = '';
   comics: any[] = [];
   events: any[] = [];
+  bio: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private characterService: CharacterService,
     private favoritesService: FavoritesService,
-    private comicService: ComicService
+    private comicService: ComicService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
+    console.log('Detalle cargado', this.route.snapshot.paramMap.get('id'));
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.characterService.getCharacterById(id).subscribe({
       next: (resp: MarvelApiResponse) => {
@@ -49,6 +54,19 @@ export class CharacterDetailComponent implements OnInit {
       next: (events: any[]) => this.events = events,
       error: () => this.events = []
     });
+
+    this.cargarBio();
+  }
+
+  cargarBio() {
+    const nombre = this.character?.name?.replace(' ', '_');
+    if (nombre) {
+      this.http.get(`/api/scraping/bio?character=${encodeURIComponent(nombre)}`, { responseType: 'text' })
+        .subscribe({
+          next: texto => this.bio = texto,
+          error: () => this.bio = 'No se pudo obtener la biografía de Wikipedia.'
+        });
+    }
   }
 
   addToFavorites(): void {
