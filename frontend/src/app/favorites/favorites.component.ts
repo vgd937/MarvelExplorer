@@ -1,32 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoritesService } from '../services/favorites.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Favorite, FavoriteService } from '../services/favorites.service';
+
 
 @Component({
   selector: 'app-favorites',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent implements OnInit {
-  favorites: any[] = [];
-  notes: string = '';
+  favorites: Favorite[] = [];
+  newName = '';
+  newId: number | null = null;
+  newNote = '';
 
-  private apiUrl = 'http://localhost:8080/api/characters';
-
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(private favService: FavoriteService) {}
 
   ngOnInit() {
-    this.loadFavorites();
+    this.load();
   }
 
-  loadFavorites() {
-    this.favoritesService.getFavorites().subscribe((data: any) => this.favorites = data);
+  load() {
+    this.favService.getAll().subscribe(favs => this.favorites = favs);
   }
 
-  saveNotes(characterId: number, notes: string) {
-    this.favoritesService.updateFavorite(characterId, { characterId, notes }).subscribe(() => this.loadFavorites());
+  add() {
+    if (this.newId && this.newName) {
+      this.favService.add({ characterId: this.newId, characterName: this.newName, note: this.newNote })
+        .subscribe(() => {
+          this.load();
+          this.newId = null;
+          this.newName = '';
+          this.newNote = '';
+        });
+    }
+  }
+
+  save(fav: Favorite) {
+    this.favService.update(fav).subscribe(() => this.load());
   }
 
   remove(characterId: number) {
-    this.favoritesService.removeFavorite(characterId).subscribe(() => this.loadFavorites());
+    this.favService.delete(characterId).subscribe(() => this.load());
   }
 }

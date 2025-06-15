@@ -1,4 +1,8 @@
 <main>
   <h1>🦸‍♂️ Marvel Explorer</h1>
+  <nav>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a routerLink="/favorites" routerLinkActive="active">⭐ Favoritos</a>
+  </nav>
   <router-outlet></router-outlet>
 </main>

@@ -1,33 +1,39 @@
 package com.marvelexplorer.controller;
 
 import com.marvelexplorer.model.Favorite;
-import java.util.*;
+import com.marvelexplorer.repository.FavoriteRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/favorites")
+@CrossOrigin
 public class FavoriteController {
-    private final Map<Long, Favorite> favorites = new HashMap<>();
+    private final FavoriteRepository repo;
+
+    public FavoriteController(FavoriteRepository repo) {
+        this.repo = repo;
+    }
 
     @GetMapping
-    public Collection<Favorite> getAllFavorites() {
-        return favorites.values();
+    public List<Favorite> getAll() {
+        return repo.findAll();
     }
 
     @PostMapping
-    public Favorite addFavorite(@RequestBody Favorite favorite) {
-        favorites.put(favorite.getCharacterId(), favorite);
-        return favorite;
+    public Favorite add(@RequestBody Favorite fav) {
+        return repo.save(fav);
     }
 
-    @PutMapping("/{characterId}")
-    public Favorite updateFavorite(@PathVariable Long characterId, @RequestBody Favorite favorite) {
-        favorites.put(characterId, favorite);
-        return favorite;
+    @PutMapping("/{id}")
+    public Favorite update(@PathVariable Long id, @RequestBody Favorite fav) {
+        fav.setCharacterId(id);
+        return repo.save(fav);
     }
 
-    @DeleteMapping("/{characterId}")
-    public void removeFavorite(@PathVariable Long characterId) {
-        favorites.remove(characterId);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        repo.deleteById(id);
     }
 }

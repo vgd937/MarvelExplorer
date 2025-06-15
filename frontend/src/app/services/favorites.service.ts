@@ -1,25 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface Favorite {
+  characterId: number;
+  characterName: string;
+  note: string;
+}
 
 @Injectable({ providedIn: 'root' })
-export class FavoritesService {
-  private apiUrl = '/api/favorites';
+export class FavoriteService {
+  private api = '/api/favorites';
 
   constructor(private http: HttpClient) {}
 
-  getFavorites() {
-    return this.http.get(this.apiUrl);
+  getAll(): Observable<Favorite[]> {
+    return this.http.get<Favorite[]>(this.api);
   }
 
-  addFavorite(favorite: any) {
-    return this.http.post(this.apiUrl, favorite);
+  add(fav: Favorite): Observable<Favorite> {
+    return this.http.post<Favorite>(this.api, fav);
   }
 
-  updateFavorite(characterId: number, favorite: any) {
-    return this.http.put(`${this.apiUrl}/${characterId}`, favorite);
+  update(fav: Favorite): Observable<Favorite> {
+    return this.http.put<Favorite>(`${this.api}/${fav.characterId}`, fav);
   }
 
-  removeFavorite(characterId: number) {
-    return this.http.delete(`${this.apiUrl}/${characterId}`);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${id}`);
   }
 }

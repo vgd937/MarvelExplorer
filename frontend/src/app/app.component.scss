@@ -1,0 +1,13 @@
+nav {
+  margin-bottom: 1.5rem;
+}
+nav a {
+  margin-right: 1.5rem;
+  text-decoration: none;
+  color: #d32f2f;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', Comic Sans, cursive, sans-serif;
+}
+nav a.active {
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+}

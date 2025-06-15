@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CharacterService } from '../services/character.service';
-import { FavoritesService } from '../services/favorites.service';
+import { FavoriteService } from '../services/favorites.service';
 import { ComicService } from '../services/comic.service';
 import { MarvelApiResponse, MarvelCharacter } from '../models/character';
 import { HttpClient } from '@angular/common/http';
@@ -25,7 +25,7 @@ export class CharacterDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private characterService: CharacterService,
-    private favoritesService: FavoritesService,
+    private favoritesService: FavoriteService,
     private comicService: ComicService,
     private http: HttpClient
   ) {}
@@ -70,9 +70,10 @@ export class CharacterDetailComponent implements OnInit {
 
   addToFavorites(): void {
     if (this.character) {
-      this.favoritesService.addFavorite({
+      this.favoritesService.add({
         characterId: this.character.id,
-        notes: ''
+        characterName: this.character.name,
+        note: ''
       }).subscribe(() => {
         alert(`${this.character?.name} añadido a favoritos!`);
       });

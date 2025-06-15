@@ -18,3 +18,20 @@ img {
   border-radius: 8px;
   box-shadow: 4px 4px 0 #222;
 }
+
+.favorite-btn {
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.1rem;
+  font-family: 'Comic Sans MS', Comic Sans, cursive, sans-serif;
+  box-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: background 0.2s;
+}
+.favorite-btn:hover {
+  background: #b71c1c;
+}

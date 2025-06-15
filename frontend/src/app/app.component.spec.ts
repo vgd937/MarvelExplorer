@@ -26,4 +26,12 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, frontend');
   });
+
+  it('should have a link to favorites', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('a.routerLink')?.getAttribute('routerLink')).toEqual('/favorites');
+    expect(compiled.querySelector('a.routerLink')?.textContent).toContain('⭐ Favoritos');
+  });
 });
