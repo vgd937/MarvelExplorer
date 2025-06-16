@@ -1,18 +1,118 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 0 #d32f2f, 4px 4px 0 #000;
+  text-align: left;
+  margin: 0;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+}
+
 nav {
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
+
 nav a {
-  margin-right: 1.5rem;
   text-decoration: none;
   color: #d32f2f;
   font-weight: bold;
   font-family: 'Comic Sans MS', Comic Sans, cursive, sans-serif;
+  text-align: center;
 }
+
 nav a.active {
   text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
 }
-h1 {
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
-  color: #d32f2f;
-  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+
+/* Centrar detalles del personaje */
+::ng-deep app-character-detail > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-header {
+  width: 100%;
+  max-width: 100vw;
+  background: linear-gradient(90deg, #232526 60%, #d32f2f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 2.5rem;
+  box-shadow: 0 4px 24px #0008;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 4px #0008);
+}
+
+.header-nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-btn {
+  background: linear-gradient(90deg, #fbb034 0%, #d32f2f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.6rem 1.6rem;
+  font-size: 1.1rem;
+  font-family: 'Comic Sans MS', Comic Sans, cursive, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #0004;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  outline: none;
+  border: 2px solid transparent;
+}
+
+.nav-btn.active,
+.nav-btn:hover,
+.nav-btn:focus {
+  background: linear-gradient(90deg, #d32f2f 60%, #fbb034 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px #d32f2f44;
+  border: 2px solid #fff;
+}
+
+@media (max-width: 800px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 1rem;
+    gap: 0.7rem;
+  }
+  .header-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.7rem;
+  }
+  .header-left {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }

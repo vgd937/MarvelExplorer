@@ -1,7 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 h2, h3 {
   font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
   color: #d32f2f;
   text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+  align-self: center;
+  text-align: center;
 }
 
 .card {
@@ -11,12 +20,16 @@ h2, h3 {
   box-shadow: 6px 6px 0 #d32f2f;
   padding: 1rem;
   margin-bottom: 2rem;
+  align-self: center;
+  text-align: center;
 }
 
 img {
   border: 3px solid #d32f2f;
   border-radius: 8px;
   box-shadow: 4px 4px 0 #222;
+  align-self: center;
+  text-align: center;
 }
 
 .favorite-btn {
@@ -31,7 +44,14 @@ img {
   cursor: pointer;
   margin: 1rem 0;
   transition: background 0.2s;
+  align-self: center;
+  text-align: center;
 }
 .favorite-btn:hover {
   background: #b71c1c;
+}
+
+p, ul, button {
+  align-self: center;
+  text-align: center;
 }

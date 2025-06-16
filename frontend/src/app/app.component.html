@@ -1,8 +1,13 @@
-<main>
-  <h1>🦸‍♂️ Marvel Explorer</h1>
-  <nav>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
-    <a routerLink="/favorites" routerLinkActive="active">⭐ Favoritos</a>
+<header class="main-header">
+  <div class="header-left">
+    <img src="assets/logo1.png" alt="Marvel Explorer Logo" class="logo" />
+    <h1>Marvel Explorer</h1>
+  </div>
+  <nav class="header-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-btn">Inicio</a>
+    <a routerLink="/favorites" routerLinkActive="active" class="nav-btn">⭐ Favoritos</a>
   </nav>
+</header>
+<main>
   <router-outlet></router-outlet>
 </main>

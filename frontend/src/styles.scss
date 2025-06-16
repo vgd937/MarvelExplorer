@@ -2,9 +2,14 @@
 
 body {
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-  background: linear-gradient(120deg, #fff 0%, #fbb03422 100%);
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* <-- Añade esto */
+  /* Fondo futurista con gradiente y líneas */
+  background:
+    repeating-linear-gradient(135deg, #23252622 0 2px, transparent 2px 40px),
+    linear-gradient(120deg, #232526 0%, #414345 100%);
 }
 
 @media (max-width: 600px) {

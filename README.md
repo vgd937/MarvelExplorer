@@ -1,4 +1,3 @@
-
 🦸‍♂️ Marvel Explorer 🔍  
 Marvel Explorer es una aplicación web que permite a los fans del universo Marvel explorar personajes, cómics y eventos, consultar información oficial de la API de Marvel, y gestionar su propia colección personalizada de héroes favoritos.
 
@@ -81,6 +80,51 @@ marvel-explorer/
 │
 └── docker-compose.yml
 ```
+
+---
+
+📑 Documentación de la API REST
+
+La API REST del backend expone los siguientes endpoints principales:
+
+🔹 Personajes
+
+- **GET `/api/characters`**  
+  Devuelve la lista de personajes Marvel disponibles.
+
+- **GET `/api/characters/{id}`**  
+  Devuelve los detalles de un personaje por su ID.
+
+🔹 Favoritos
+
+- **GET `/api/favorites`**  
+  Devuelve la lista de personajes favoritos del usuario.
+
+- **POST `/api/favorites`**  
+  Añade un personaje a la lista de favoritos.  
+  **Body:**  
+  ```json
+  {
+    "characterId": 1009610,
+    "characterName": "Spider-Man",
+    "note": "Mi favorito",
+    "thumbnailUrl": "https://..."
+  }
+  ```
+
+- **PUT `/api/favorites/{id}`**  
+  Actualiza la información de un favorito (nota, nombre, etc).  
+  **Body:** igual que en POST.
+
+- **DELETE `/api/favorites/{id}`**  
+  Elimina un personaje de la lista de favoritos.
+
+🔹 Scraping de biografías
+
+- **GET `/api/scraping/bio?character={nombre}`**  
+  Devuelve el primer párrafo de la biografía del personaje desde Wikipedia.  
+  **Ejemplo:**  
+  `/api/scraping/bio?character=Iron_Man`
 
 ---
 
